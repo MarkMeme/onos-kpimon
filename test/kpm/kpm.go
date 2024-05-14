@@ -6,8 +6,8 @@ package kpm
 
 import (
 	"context"
-	"github.com/onosproject/onos-kpimon/pkg/manager"
-	"github.com/onosproject/onos-kpimon/test/utils"
+	"github.com/MarkMeme/onos-kpimon/pkg/manager"
+	"github.com/MarkMeme/onos-kpimon/test/utils"
 	"github.com/onosproject/onos-lib-go/pkg/certs"
 	"github.com/stretchr/testify/assert"
 	"testing"

@@ -8,4 +8,4 @@ set -e
 
 echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USER" --password-stdin
 make images
-docker push onosproject/onos-kpimon:latest
+docker push MarkMeme/onos-kpimon:latest

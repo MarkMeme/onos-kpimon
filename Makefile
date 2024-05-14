@@ -20,22 +20,22 @@ include ./build/build-tools/make/onf-common.mk
 
 test: # @HELP run the unit tests and source code validation
 test: build deps linters license
-	go test -race github.com/onosproject/onos-kpimon/pkg/...
-	go test -race github.com/onosproject/onos-kpimon/cmd/...
+	go test -race github.com/MarkMeme/onos-kpimon/pkg/...
+	go test -race github.com/MarkMeme/onos-kpimon/cmd/...
 
 jenkins-test:  # @HELP run the unit tests and source code validation producing a junit style report for Jenkins
 jenkins-test: deps license linters
-	TEST_PACKAGES=github.com/onosproject/onos-kpimon/... ./build/build-tools/build/jenkins/make-unit
+	TEST_PACKAGES=github.com/MarkMeme/onos-kpimon/... ./build/build-tools/build/jenkins/make-unit
 
 buflint: #@HELP run the "buf check lint" command on the proto files in 'api'
-	docker run -it -v `pwd`:/go/src/github.com/onosproject/onos-kpimon \
-		-w /go/src/github.com/onosproject/onos-kpimon/api \
+	docker run -it -v `pwd`:/go/src/github.com/MarkMeme/onos-kpimon \
+		-w /go/src/github.com/MarkMeme/onos-kpimon/api \
 		bufbuild/buf:${BUF_VERSION} check lint
 
 protos: # @HELP compile the protobuf files (using protoc-go Docker)
 protos:
-	docker run -it -v `pwd`:/go/src/github.com/onosproject/onos-kpimon \
-		-w /go/src/github.com/onosproject/onos-kpimon \
+	docker run -it -v `pwd`:/go/src/github.com/MarkMeme/onos-kpimon \
+		-w /go/src/github.com/MarkMeme/onos-kpimon \
 		--entrypoint build/bin/compile-protos.sh \
 		onosproject/protoc-go:${ONOS_PROTOC_VERSION}
 
@@ -51,7 +51,7 @@ onos-kpimon-docker: # @HELP build onos-kpimon Docker image
 onos-kpimon-docker:
 	@go mod vendor
 	docker build . -f build/onos-kpimon/Dockerfile \
-		-t onosproject/onos-kpimon:${ONOS_KPIMON_VERSION}
+		-t MarkMeme/onos-kpimon:${ONOS_KPIMON_VERSION}
 	@rm -rf vendor
 
 images: # @HELP build all Docker images
@@ -60,12 +60,12 @@ images: build onos-kpimon-docker
 kind: # @HELP build Docker images and add them to the currently configured kind cluster
 kind: images
 	@if [ "`kind get clusters`" = '' ]; then echo "no kind cluster found" && exit 1; fi
-	kind load docker-image onosproject/onos-kpimon:${ONOS_KPIMON_VERSION}
+	kind load docker-image MarkMeme/onos-kpimon:${ONOS_KPIMON_VERSION}
 
 all: build images
 
 publish: # @HELP publish version on github and dockerhub
-	./build/build-tools/publish-version ${VERSION} onosproject/onos-kpimon
+	./build/build-tools/publish-version ${VERSION} MarkMeme/onos-kpimon
 
 jenkins-publish: jenkins-tools # @HELP Jenkins calls this to publish artifacts
 	./build/bin/push-images
@@ -73,5 +73,5 @@ jenkins-publish: jenkins-tools # @HELP Jenkins calls this to publish artifacts
 
 clean:: # @HELP remove all the build artifacts
 	rm -rf ./build/_output ./vendor ./cmd/onos-kpimon/onos-kpimon ./cmd/onos/onos
-	go clean -testcache github.com/onosproject/onos-kpimon/...
+	go clean -testcache github.com/MarkMeme/onos-kpimon/...
 

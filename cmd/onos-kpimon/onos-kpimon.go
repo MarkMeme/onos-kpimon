@@ -7,7 +7,7 @@ package main
 import (
 	"flag"
 
-	"github.com/onosproject/onos-kpimon/pkg/manager"
+	"github.com/MarkMeme/onos-kpimon/pkg/manager"
 	"github.com/onosproject/onos-lib-go/pkg/certs"
 	"github.com/onosproject/onos-lib-go/pkg/logging"
 )
