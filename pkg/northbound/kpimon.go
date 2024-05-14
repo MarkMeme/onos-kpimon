@@ -8,13 +8,13 @@ import (
 	"context"
 	"fmt"
 	topoapi "github.com/onosproject/onos-api/go/onos/topo"
-	"github.com/MarkMeme/onos-kpimon/pkg/rnib"
+	"github.com/markmeme/onos-kpimon/pkg/rnib"
 
-	"github.com/MarkMeme/onos-kpimon/pkg/utils"
+	"github.com/markmeme/onos-kpimon/pkg/utils"
 
 	kpimonapi "github.com/onosproject/onos-api/go/onos/kpimon"
-	"github.com/MarkMeme/onos-kpimon/pkg/store/event"
-	measurementStore "github.com/MarkMeme/onos-kpimon/pkg/store/measurements"
+	"github.com/markmeme/onos-kpimon/pkg/store/event"
+	measurementStore "github.com/markmeme/onos-kpimon/pkg/store/measurements"
 	"github.com/onosproject/onos-lib-go/pkg/logging/service"
 	"google.golang.org/grpc"
 )

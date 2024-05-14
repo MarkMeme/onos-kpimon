@@ -8,7 +8,7 @@ import (
 	"github.com/onosproject/helmit/pkg/helm"
 	"github.com/onosproject/helmit/pkg/input"
 	"github.com/onosproject/helmit/pkg/test"
-	"github.com/MarkMeme/onos-kpimon/test/utils"
+	"github.com/markmeme/onos-kpimon/test/utils"
 	testutils "github.com/onosproject/onos-ric-sdk-go/pkg/utils"
 )
 

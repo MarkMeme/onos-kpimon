@@ -7,23 +7,23 @@ package monitoring
 import (
 	"context"
 
-	"github.com/MarkMeme/onos-kpimon/pkg/rnib"
+	"github.com/markmeme/onos-kpimon/pkg/rnib"
 
 	e2api "github.com/onosproject/onos-api/go/onos/e2t/e2/v1beta1"
-	"github.com/MarkMeme/onos-kpimon/pkg/store/actions"
+	"github.com/markmeme/onos-kpimon/pkg/store/actions"
 
 	topoapi "github.com/onosproject/onos-api/go/onos/topo"
 
-	appConfig "github.com/MarkMeme/onos-kpimon/pkg/config"
+	appConfig "github.com/markmeme/onos-kpimon/pkg/config"
 
-	measurmentStore "github.com/MarkMeme/onos-kpimon/pkg/store/measurements"
+	measurmentStore "github.com/markmeme/onos-kpimon/pkg/store/measurements"
 
 	e2smkpmv2 "github.com/onosproject/onos-e2-sm/servicemodels/e2sm_kpm_v2_go/v2/e2sm-kpm-v2-go"
 	"google.golang.org/protobuf/proto"
 
 	"github.com/onosproject/onos-lib-go/pkg/logging"
 
-	"github.com/MarkMeme/onos-kpimon/pkg/broker"
+	"github.com/markmeme/onos-kpimon/pkg/broker"
 )
 
 var log = logging.GetLogger()

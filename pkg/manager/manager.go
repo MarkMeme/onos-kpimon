@@ -5,12 +5,12 @@
 package manager
 
 import (
-	"github.com/MarkMeme/onos-kpimon/pkg/broker"
-	appConfig "github.com/MarkMeme/onos-kpimon/pkg/config"
-	nbi "github.com/MarkMeme/onos-kpimon/pkg/northbound"
-	"github.com/MarkMeme/onos-kpimon/pkg/southbound/e2/subscription"
-	"github.com/MarkMeme/onos-kpimon/pkg/store/actions"
-	"github.com/MarkMeme/onos-kpimon/pkg/store/measurements"
+	"github.com/markmeme/onos-kpimon/pkg/broker"
+	appConfig "github.com/markmeme/onos-kpimon/pkg/config"
+	nbi "github.com/markmeme/onos-kpimon/pkg/northbound"
+	"github.com/markmeme/onos-kpimon/pkg/southbound/e2/subscription"
+	"github.com/markmeme/onos-kpimon/pkg/store/actions"
+	"github.com/markmeme/onos-kpimon/pkg/store/measurements"
 	"github.com/onosproject/onos-lib-go/pkg/logging"
 	"github.com/onosproject/onos-lib-go/pkg/northbound"
 )

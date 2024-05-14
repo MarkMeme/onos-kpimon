@@ -10,7 +10,7 @@ import (
 
 	"github.com/onosproject/onos-lib-go/pkg/errors"
 
-	"github.com/MarkMeme/onos-kpimon/pkg/store/watcher"
+	"github.com/markmeme/onos-kpimon/pkg/store/watcher"
 )
 
 // Store kpm action definitions  store interface

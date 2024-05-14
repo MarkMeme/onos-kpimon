@@ -1,4 +1,4 @@
-module github.com/MarkMeme/onos-kpimon
+module github.com/markmeme/onos-kpimon
 
 go 1.19
 

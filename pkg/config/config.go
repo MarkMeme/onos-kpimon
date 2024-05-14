@@ -9,7 +9,7 @@ import (
 
 	configurable "github.com/onosproject/onos-ric-sdk-go/pkg/config/registry"
 
-	"github.com/MarkMeme/onos-kpimon/pkg/utils"
+	"github.com/markmeme/onos-kpimon/pkg/utils"
 	"github.com/onosproject/onos-lib-go/pkg/logging"
 	app "github.com/onosproject/onos-ric-sdk-go/pkg/config/app/default"
 	"github.com/onosproject/onos-ric-sdk-go/pkg/config/event"

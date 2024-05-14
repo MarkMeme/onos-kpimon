@@ -7,8 +7,8 @@ package main
 import (
 	"github.com/onosproject/helmit/pkg/registry"
 	"github.com/onosproject/helmit/pkg/test"
-	"github.com/MarkMeme/onos-kpimon/test/ha"
-	"github.com/MarkMeme/onos-kpimon/test/kpm"
+	"github.com/markmeme/onos-kpimon/test/ha"
+	"github.com/markmeme/onos-kpimon/test/kpm"
 )
 
 func main() {

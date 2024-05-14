@@ -13,9 +13,9 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/MarkMeme/onos-kpimon/pkg/store/watcher"
+	"github.com/markmeme/onos-kpimon/pkg/store/watcher"
 
-	"github.com/MarkMeme/onos-kpimon/pkg/store/event"
+	"github.com/markmeme/onos-kpimon/pkg/store/event"
 
 	"github.com/onosproject/onos-lib-go/pkg/errors"
 )

@@ -14,7 +14,7 @@ import (
 	"github.com/onosproject/helmit/pkg/kubernetes"
 	v1 "github.com/onosproject/helmit/pkg/kubernetes/core/v1"
 	"github.com/onosproject/onos-api/go/onos/kpimon"
-	"github.com/MarkMeme/onos-kpimon/test/utils"
+	"github.com/markmeme/onos-kpimon/test/utils"
 	"github.com/stretchr/testify/assert"
 )
 

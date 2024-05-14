@@ -5,11 +5,11 @@
 package subscription
 
 import (
-	"github.com/MarkMeme/onos-kpimon/pkg/broker"
-	appConfig "github.com/MarkMeme/onos-kpimon/pkg/config"
-	"github.com/MarkMeme/onos-kpimon/pkg/monitoring"
-	"github.com/MarkMeme/onos-kpimon/pkg/store/actions"
-	"github.com/MarkMeme/onos-kpimon/pkg/store/measurements"
+	"github.com/markmeme/onos-kpimon/pkg/broker"
+	appConfig "github.com/markmeme/onos-kpimon/pkg/config"
+	"github.com/markmeme/onos-kpimon/pkg/monitoring"
+	"github.com/markmeme/onos-kpimon/pkg/store/actions"
+	"github.com/markmeme/onos-kpimon/pkg/store/measurements"
 )
 
 // Options E2 client options

@@ -7,7 +7,7 @@ package watcher
 import (
 	"sync"
 
-	"github.com/MarkMeme/onos-kpimon/pkg/store/event"
+	"github.com/markmeme/onos-kpimon/pkg/store/event"
 
 	"github.com/google/uuid"
 )

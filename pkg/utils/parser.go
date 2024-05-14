@@ -7,7 +7,7 @@ package utils
 import (
 	prototypes "github.com/gogo/protobuf/types"
 	kpimonapi "github.com/onosproject/onos-api/go/onos/kpimon"
-	measurementStore "github.com/MarkMeme/onos-kpimon/pkg/store/measurements"
+	measurementStore "github.com/markmeme/onos-kpimon/pkg/store/measurements"
 	"github.com/onosproject/onos-lib-go/pkg/logging"
 )
 
