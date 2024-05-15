@@ -111,7 +111,7 @@ func (m *Monitor) processIndicationFormat1(ctx context.Context, indication e2api
 	measInfoList := indMsgFormat1.GetMeasInfoList().GetValue()
 
 	measItems := make([]measurmentStore.MeasurementItem, 0)
-	log.Info("Hi dr Karmoose");
+	log.Info("Hi dr Karmoose")
 	for i, measDataItem := range measDataItems {
 		meadDataRecords := measDataItem.GetMeasRecord().GetValue()
 		measRecords := make([]measurmentStore.MeasurementRecord, 0)
@@ -140,7 +140,7 @@ func (m *Monitor) processIndicationFormat1(ctx context.Context, indication e2api
 				}
 				measRecords = append(measRecords, measRecord)
 			} 
-			log.Info("Start else");
+			log.Info("Start else")
 			// else
 			if measInfoList[j].GetMeasType().GetMeasId() != nil {
 				measID := measInfoList[j].GetMeasType().GetMeasId().String()
@@ -154,7 +154,7 @@ func (m *Monitor) processIndicationFormat1(ctx context.Context, indication e2api
 				}
 				measRecords = append(measRecords, measRecord)
 			}
-			log.Info("End else");
+			log.Info("End else")
 		}
 
 		measItem := measurmentStore.MeasurementItem{
@@ -183,7 +183,9 @@ func (m *Monitor) processIndicationFormat1(ctx context.Context, indication e2api
 	if err != nil {
 		return err
 	}
-	log.Info("function end");
+	log.Info("function end")
+	log.Debugf("function end")
+
 
 	return nil
 }
@@ -212,6 +214,7 @@ func (m *Monitor) Start(ctx context.Context) error {
 			if err != nil {
 				errCh <- err
 			}
+			log.Info("monitor end")
 		}
 	}()
 

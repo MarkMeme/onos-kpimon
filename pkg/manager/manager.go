@@ -115,7 +115,7 @@ func (m *Manager) startNorthboundServer() error {
 	go func() {
 		err := s.Serve(func(started string) {
 			log.Info("Started NBI on ", started)
-			log.Info("Mimi says hi")
+			log.Info("Mimi & Unan says hi to Dr. Karmoose")
 			close(doneCh)
 		})
 		if err != nil {

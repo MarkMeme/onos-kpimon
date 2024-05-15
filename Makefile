@@ -7,7 +7,7 @@ export GO111MODULE=on
 
 .PHONY: build
 
-ONOS_KPIMON_VERSION := latest
+ONOS_KPIMON_VERSION := 0.0.1
 ONOS_PROTOC_VERSION := v0.6.6
 BUF_VERSION := 0.27.1
 
@@ -51,7 +51,7 @@ onos-kpimon-docker: # @HELP build onos-kpimon Docker image
 onos-kpimon-docker:
 	@go mod vendor
 	docker build . -f build/onos-kpimon/Dockerfile \
-		-t markmeme/onos-kpimon:${ONOS_KPIMON_VERSION}
+		-t markmimi/kpimon:${ONOS_KPIMON_VERSION}
 	@rm -rf vendor
 
 images: # @HELP build all Docker images
@@ -60,12 +60,12 @@ images: build onos-kpimon-docker
 kind: # @HELP build Docker images and add them to the currently configured kind cluster
 kind: images
 	@if [ "`kind get clusters`" = '' ]; then echo "no kind cluster found" && exit 1; fi
-	kind load docker-image markmeme/onos-kpimon:${ONOS_KPIMON_VERSION}
+	kind load docker-image markmimi/kpimon:${ONOS_KPIMON_VERSION}
 
 all: build images
 
 publish: # @HELP publish version on github and dockerhub
-	./build/build-tools/publish-version ${VERSION} markmeme/onos-kpimon
+	./build/build-tools/publish-version ${VERSION} markmimi/kpimon
 
 jenkins-publish: jenkins-tools # @HELP Jenkins calls this to publish artifacts
 	./build/bin/push-images
