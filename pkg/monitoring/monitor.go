@@ -140,6 +140,12 @@ func (m *Monitor) processIndicationFormat1(ctx context.Context, indication e2api
 				}
 				measRecords = append(measRecords, measRecord)
 			} 
+			log.Info("=============================================================")
+
+			log.Debugf("List of measurements:", measurements)
+			log.Info("=============================================================")
+
+
 			log.Info("Start else")
 			// else
 			if measInfoList[j].GetMeasType().GetMeasId() != nil {
@@ -184,9 +190,6 @@ func (m *Monitor) processIndicationFormat1(ctx context.Context, indication e2api
 		return err
 	}
 	log.Info("function end")
-	log.Debugf("function end")
-
-
 	return nil
 }
 
@@ -213,7 +216,7 @@ func (m *Monitor) Start(ctx context.Context) error {
 			err = m.processIndication(ctx, indMsg, m.measurements, m.nodeID)
 			if err != nil {
 				errCh <- err
-			}
+			}	
 			log.Info("monitor end")
 		}
 	}()
