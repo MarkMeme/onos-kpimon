@@ -131,6 +131,7 @@ func (m *Monitor) processIndicationFormat1(ctx context.Context, indication e2api
 
 			timeStamp := uint64(startTimeUnixNano) + granularity*uint64(1000000)*uint64(i)
 			if measInfoList[j].GetMeasType().GetMeasName().GetValue() != "" {
+				log.Debugf("List of measurements:", measurements) // test measurements
 				measName := measInfoList[j].GetMeasType().GetMeasName().GetValue()
 				measRecord := measurmentStore.MeasurementRecord{
 					Timestamp:        timeStamp,
