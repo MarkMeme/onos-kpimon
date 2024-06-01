@@ -73,17 +73,25 @@ func (m *Monitor) processIndicationFormat1(ctx context.Context, indication e2api
 		log.Warn(err)
 		return err
 	}
+	log.Info("1++++++++++++++++++++++++++++++")
 
 	indHdrFormat1 := indHeader.GetIndicationHeaderFormats().GetIndicationHeaderFormat1()
 	indMsgFormat1 := indMessage.GetIndicationMessageFormats().GetIndicationMessageFormat1()
 	qfi := indMsgFormat1.GetMeasInfoList().GetValue()[0].GetMeasType().GetMeasName().GetValue().GetLabelInfoList().GetValue()[0].GetMeasLabel().GetQFi().GetValue()
+	qci := indMsgFormat1.GetMeasInfoList().GetValue()[0].GetMeasType().GetMeasName().GetValue().GetLabelInfoList().GetValue()[0].GetMeasLabel().GetQCi().GetValue()
+	aRpmin := indMsgFormat1.GetMeasInfoList().GetValue()[0].GetMeasType().GetMeasName().GetValue().GetLabelInfoList().GetValue()[0].GetMeasLabel().GetARpmin().GetValue()
+	qciMin := indMsgFormat1.GetMeasInfoList().GetValue()[0].GetMeasType().GetMeasName().GetValue().GetLabelInfoList().GetValue()[0].GetMeasLabel().GetQCimin().GetValue()
 	arpMax := indMsgFormat1.GetMeasInfoList().GetValue()[0].GetMeasType().GetMeasName().GetValue().GetLabelInfoList().GetValue()[0].GetMeasLabel().GetARpmax().GetValue()
+	bitrateRange := indMsgFormat1.GetMeasInfoList().GetValue()[0].GetMeasType().GetMeasName().GetValue().GetLabelInfoList().GetValue()[0].GetMeasLabel().GetBitrateRange().GetValue()
 
-	log.Info("++++++++++++++++++++++++++++++")
+	log.Info("2++++++++++++++++++++++++++++++")
 	log.Debugf("QFI IS : %v", qfi)
-	log.Debugf("ARPMax IS : %v", arpMax)
-	log.Debugf("QFI IS : %v", qfi)
-	log.Debugf("QFI IS : %v", qfi)
+	log.Debugf("qci IS : %v", qci)
+	log.Debugf("arpMax IS : %v", arpMax)
+	log.Debugf("qciMin IS : %v", qciMin)
+	log.Debugf("aRpmin IS : %v", aRpmin)
+	log.Debugf("bitrateRange IS : %v", bitrateRange)
+	log.Info("3++++++++++++++++++++++++++++++")
 
 	log.Debugf("Received indication header format 1 %v:", indHdrFormat1)
 	log.Debugf("Received indication message format 1: %v", indMsgFormat1)
@@ -140,6 +148,7 @@ func (m *Monitor) processIndicationFormat1(ctx context.Context, indication e2api
 			}
 			log.Info("==============================")
 			log.Debugf("measur vlaue:", measValue)
+			log.Info("==============================")
 
 			timeStamp := uint64(startTimeUnixNano) + granularity*uint64(1000000)*uint64(i)
 			if measInfoList[j].GetMeasType().GetMeasName().GetValue() != "" {
@@ -150,7 +159,7 @@ func (m *Monitor) processIndicationFormat1(ctx context.Context, indication e2api
 					MeasurementValue: measValue,
 				}
 				measRecords = append(measRecords, measRecord)
-
+				log.Info("we in the IF")
 			} else if measInfoList[j].GetMeasType().GetMeasId() != nil {
 				measID := measInfoList[j].GetMeasType().GetMeasId().String()
 				log.Debugf("Received meas ID in indication message:", measID)
@@ -162,6 +171,7 @@ func (m *Monitor) processIndicationFormat1(ctx context.Context, indication e2api
 					MeasurementValue: measValue,
 				}
 				measRecords = append(measRecords, measRecord)
+				log.Info("we in the ELSE IF")
 			}
 		}
 		measItem := measurmentStore.MeasurementItem{
