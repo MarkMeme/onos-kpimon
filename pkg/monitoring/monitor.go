@@ -7,23 +7,23 @@ package monitoring
 import (
 	"context"
 
-	"github.com/markmeme/onos-kpimon/pkg/rnib"
+	"github.com/onosproject/onos-kpimon/pkg/rnib"
 
 	e2api "github.com/onosproject/onos-api/go/onos/e2t/e2/v1beta1"
-	"github.com/markmeme/onos-kpimon/pkg/store/actions"
+	"github.com/onosproject/onos-kpimon/pkg/store/actions"
 
 	topoapi "github.com/onosproject/onos-api/go/onos/topo"
 
-	appConfig "github.com/markmeme/onos-kpimon/pkg/config"
+	appConfig "github.com/onosproject/onos-kpimon/pkg/config"
 
-	measurmentStore "github.com/markmeme/onos-kpimon/pkg/store/measurements"
-
+	measurmentStore "github.com/onosproject/onos-kpimon/pkg/store/measurements"
+	
 	e2smkpmv2 "github.com/onosproject/onos-e2-sm/servicemodels/e2sm_kpm_v2_go/v2/e2sm-kpm-v2-go"
 	"google.golang.org/protobuf/proto"
 
 	"github.com/onosproject/onos-lib-go/pkg/logging"
 
-	"github.com/markmeme/onos-kpimon/pkg/broker"
+	"github.com/onosproject/onos-kpimon/pkg/broker"
 )
 
 var log = logging.GetLogger()
@@ -76,6 +76,15 @@ func (m *Monitor) processIndicationFormat1(ctx context.Context, indication e2api
 
 	indHdrFormat1 := indHeader.GetIndicationHeaderFormats().GetIndicationHeaderFormat1()
 	indMsgFormat1 := indMessage.GetIndicationMessageFormats().GetIndicationMessageFormat1()
+	qfi := indMsgFormat1.GetMeasInfoList().GetValue()[0].GetMeasType().GetMeasName().GetValue().GetLabelInfoList().GetValue()[0].GetMeasLabel().GetQFi().GetValue()
+	arpMax := indMsgFormat1.GetMeasInfoList().GetValue()[0].GetMeasType().GetMeasName().GetValue().GetLabelInfoList().GetValue()[0].GetMeasLabel().GetARpmax().GetValue()
+
+	log.Info("++++++++++++++++++++++++++++++")
+	log.Debugf("QFI IS : %v", qfi)
+	log.Debugf("ARPMax IS : %v", arpMax)
+	log.Debugf("QFI IS : %v", qfi)
+	log.Debugf("QFI IS : %v", qfi)
+
 	log.Debugf("Received indication header format 1 %v:", indHdrFormat1)
 	log.Debugf("Received indication message format 1: %v", indMsgFormat1)
 
@@ -113,6 +122,7 @@ func (m *Monitor) processIndicationFormat1(ctx context.Context, indication e2api
 	measItems := make([]measurmentStore.MeasurementItem, 0)
 	for i, measDataItem := range measDataItems {
 		meadDataRecords := measDataItem.GetMeasRecord().GetValue()
+		
 		measRecords := make([]measurmentStore.MeasurementRecord, 0)
 		for j, measDataRecord := range meadDataRecords {
 			var measValue interface{}
@@ -128,10 +138,11 @@ func (m *Monitor) processIndicationFormat1(ctx context.Context, indication e2api
 			default:
 				measValue = 0
 			}
+			log.Info("==============================")
+			log.Debugf("measur vlaue:", measValue)
 
 			timeStamp := uint64(startTimeUnixNano) + granularity*uint64(1000000)*uint64(i)
 			if measInfoList[j].GetMeasType().GetMeasName().GetValue() != "" {
-				log.Debugf("List of measurements:", measurements) // test measurements
 				measName := measInfoList[j].GetMeasType().GetMeasName().GetValue()
 				measRecord := measurmentStore.MeasurementRecord{
 					Timestamp:        timeStamp,
@@ -139,6 +150,7 @@ func (m *Monitor) processIndicationFormat1(ctx context.Context, indication e2api
 					MeasurementValue: measValue,
 				}
 				measRecords = append(measRecords, measRecord)
+
 			} else if measInfoList[j].GetMeasType().GetMeasId() != nil {
 				measID := measInfoList[j].GetMeasType().GetMeasId().String()
 				log.Debugf("Received meas ID in indication message:", measID)
@@ -152,7 +164,6 @@ func (m *Monitor) processIndicationFormat1(ctx context.Context, indication e2api
 				measRecords = append(measRecords, measRecord)
 			}
 		}
-
 		measItem := measurmentStore.MeasurementItem{
 			MeasurementRecords: measRecords,
 		}
