@@ -77,12 +77,12 @@ func (m *Monitor) processIndicationFormat1(ctx context.Context, indication e2api
 
 	indHdrFormat1 := indHeader.GetIndicationHeaderFormats().GetIndicationHeaderFormat1()
 	indMsgFormat1 := indMessage.GetIndicationMessageFormats().GetIndicationMessageFormat1()
-	qfi := indMsgFormat1.GetMeasInfoList().GetValue()[0].GetMeasType().GetMeasName().GetValue().GetLabelInfoList().GetValue()[0].GetMeasLabel().GetQFi().GetValue()
-	qci := indMsgFormat1.GetMeasInfoList().GetValue()[0].GetMeasType().GetMeasName().GetValue().GetLabelInfoList().GetValue()[0].GetMeasLabel().GetQCi().GetValue()
-	aRpmin := indMsgFormat1.GetMeasInfoList().GetValue()[0].GetMeasType().GetMeasName().GetValue().GetLabelInfoList().GetValue()[0].GetMeasLabel().GetARpmin().GetValue()
-	qciMin := indMsgFormat1.GetMeasInfoList().GetValue()[0].GetMeasType().GetMeasName().GetValue().GetLabelInfoList().GetValue()[0].GetMeasLabel().GetQCimin().GetValue()
-	arpMax := indMsgFormat1.GetMeasInfoList().GetValue()[0].GetMeasType().GetMeasName().GetValue().GetLabelInfoList().GetValue()[0].GetMeasLabel().GetARpmax().GetValue()
-	bitrateRange := indMsgFormat1.GetMeasInfoList().GetValue()[0].GetMeasType().GetMeasName().GetValue().GetLabelInfoList().GetValue()[0].GetMeasLabel().GetBitrateRange().GetValue()
+	qfi := indMsgFormat1.GetMeasInfoList().GetValue()[0].GetLabelInfoList().GetValue()[0].GetMeasLabel().GetQFi().GetValue()
+	qci := indMsgFormat1.GetMeasInfoList().GetValue()[0].GetLabelInfoList().GetValue()[0].GetMeasLabel().GetQCi().GetValue()
+	aRpmin := indMsgFormat1.GetMeasInfoList().GetValue()[0].GetLabelInfoList().GetValue()[0].GetMeasLabel().GetARpmin().GetValue()
+	qciMin := indMsgFormat1.GetMeasInfoList().GetValue()[0].GetLabelInfoList().GetValue()[0].GetMeasLabel().GetQCimin().GetValue()
+	arpMax := indMsgFormat1.GetMeasInfoList().GetValue()[0].GetLabelInfoList().GetValue()[0].GetMeasLabel().GetARpmax().GetValue()
+	bitrateRange := indMsgFormat1.GetMeasInfoList().GetValue()[0].GetLabelInfoList().GetValue()[0].GetMeasLabel().GetBitrateRange().GetValue()
 
 	log.Info("2++++++++++++++++++++++++++++++")
 	log.Debugf("QFI IS : %v", qfi)
