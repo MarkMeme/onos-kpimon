@@ -82,7 +82,7 @@ func (m *Monitor) processIndicationFormat1(ctx context.Context, indication e2api
 	aRpmin := indMsgFormat1.GetMeasInfoList().GetValue()[0].GetLabelInfoList().GetValue()[0].GetMeasLabel().GetARpmin().GetValue()
 	qciMin := indMsgFormat1.GetMeasInfoList().GetValue()[0].GetLabelInfoList().GetValue()[0].GetMeasLabel().GetQCimin().GetValue()
 	arpMax := indMsgFormat1.GetMeasInfoList().GetValue()[0].GetLabelInfoList().GetValue()[0].GetMeasLabel().GetARpmax().GetValue()
-	bitrateRange := indMsgFormat1.GetMeasInfoList().GetValue()[0].GetLabelInfoList().GetValue()[0].GetMeasLabel().GetBitrateRange().GetValue()
+	bitrateRange := indMsgFormat1.GetMeasInfoList().GetValue()[0].GetLabelInfoList().GetValue()[0].GetMeasLabel().GetBitrateRange()
 
 	log.Info("2++++++++++++++++++++++++++++++")
 	log.Debugf("QFI IS : %v", qfi)
