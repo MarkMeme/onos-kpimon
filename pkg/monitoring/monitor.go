@@ -77,22 +77,25 @@ func (m *Monitor) processIndicationFormat1(ctx context.Context, indication e2api
 
 	indHdrFormat1 := indHeader.GetIndicationHeaderFormats().GetIndicationHeaderFormat1()
 	indMsgFormat1 := indMessage.GetIndicationMessageFormats().GetIndicationMessageFormat1()
-	qfi := indMsgFormat1.GetMeasInfoList().GetValue()[0].GetLabelInfoList().GetValue()[0].GetMeasLabel().GetQFi().GetValue()
-	qci := indMsgFormat1.GetMeasInfoList().GetValue()[0].GetLabelInfoList().GetValue()[0].GetMeasLabel().GetQCi().GetValue()
-	aRpmin := indMsgFormat1.GetMeasInfoList().GetValue()[0].GetLabelInfoList().GetValue()[0].GetMeasLabel().GetARpmin().GetValue()
-	qciMin := indMsgFormat1.GetMeasInfoList().GetValue()[0].GetLabelInfoList().GetValue()[0].GetMeasLabel().GetQCimin().GetValue()
-	arpMax := indMsgFormat1.GetMeasInfoList().GetValue()[0].GetLabelInfoList().GetValue()[0].GetMeasLabel().GetARpmax().GetValue()
-	bitrateRange := indMsgFormat1.GetMeasInfoList().GetValue()[0].GetLabelInfoList().GetValue()[0].GetMeasLabel().GetBitrateRange()
 
-	log.Info("2++++++++++++++++++++++++++++++")
-	log.Debugf("QFI IS : %v", qfi)
-	log.Debugf("qci IS : %v", qci)
-	log.Debugf("arpMax IS : %v", arpMax)
-	log.Debugf("qciMin IS : %v", qciMin)
-	log.Debugf("aRpmin IS : %v", aRpmin)
-	log.Debugf("bitrateRange IS : %v", bitrateRange)
-	log.Info("3++++++++++++++++++++++++++++++")
-
+	if len(indMsgFormat1.GetMeasInfoList().GetValue()) > 0 {
+		qfi := indMsgFormat1.GetMeasInfoList().GetValue()[0].GetLabelInfoList().GetValue()[0].GetMeasLabel().GetQFi().GetValue()
+		qci := indMsgFormat1.GetMeasInfoList().GetValue()[0].GetLabelInfoList().GetValue()[0].GetMeasLabel().GetQCi().GetValue()
+		aRpmin := indMsgFormat1.GetMeasInfoList().GetValue()[0].GetLabelInfoList().GetValue()[0].GetMeasLabel().GetARpmin().GetValue()
+		qciMin := indMsgFormat1.GetMeasInfoList().GetValue()[0].GetLabelInfoList().GetValue()[0].GetMeasLabel().GetQCimin().GetValue()
+		arpMax := indMsgFormat1.GetMeasInfoList().GetValue()[0].GetLabelInfoList().GetValue()[0].GetMeasLabel().GetARpmax().GetValue()
+		bitrateRange := indMsgFormat1.GetMeasInfoList().GetValue()[0].GetLabelInfoList().GetValue()[0].GetMeasLabel().GetBitrateRange()
+	
+		log.Info("2++++++++++++++++++++++++++++++")
+		log.Debugf("QFI IS : %v", qfi)
+		log.Debugf("qci IS : %v", qci)
+		log.Debugf("arpMax IS : %v", arpMax)
+		log.Debugf("qciMin IS : %v", qciMin)
+		log.Debugf("aRpmin IS : %v", aRpmin)
+		log.Debugf("bitrateRange IS : %v", bitrateRange)
+		log.Info("3++++++++++++++++++++++++++++++")
+	}
+	
 	log.Debugf("Received indication header format 1 %v:", indHdrFormat1)
 	log.Debugf("Received indication message format 1: %v", indMsgFormat1)
 
