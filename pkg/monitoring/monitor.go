@@ -78,23 +78,44 @@ func (m *Monitor) processIndicationFormat1(ctx context.Context, indication e2api
 	indHdrFormat1 := indHeader.GetIndicationHeaderFormats().GetIndicationHeaderFormat1()
 	indMsgFormat1 := indMessage.GetIndicationMessageFormats().GetIndicationMessageFormat1()
 
+	// Check if the list returned by GetMeasInfoList is not empty
 	if len(indMsgFormat1.GetMeasInfoList().GetValue()) > 0 {
-		qfi := indMsgFormat1.GetMeasInfoList().GetValue()[0].GetLabelInfoList().GetValue()[0].GetMeasLabel().GetQFi().GetValue()
-		qci := indMsgFormat1.GetMeasInfoList().GetValue()[0].GetLabelInfoList().GetValue()[0].GetMeasLabel().GetQCi().GetValue()
-		aRpmin := indMsgFormat1.GetMeasInfoList().GetValue()[0].GetLabelInfoList().GetValue()[0].GetMeasLabel().GetARpmin().GetValue()
-		qciMin := indMsgFormat1.GetMeasInfoList().GetValue()[0].GetLabelInfoList().GetValue()[0].GetMeasLabel().GetQCimin().GetValue()
-		arpMax := indMsgFormat1.GetMeasInfoList().GetValue()[0].GetLabelInfoList().GetValue()[0].GetMeasLabel().GetARpmax().GetValue()
-		bitrateRange := indMsgFormat1.GetMeasInfoList().GetValue()[0].GetLabelInfoList().GetValue()[0].GetMeasLabel().GetBitrateRange()
-	
+		// Retrieve the first measurement information object
+		measInfo := indMsgFormat1.GetMeasInfoList().GetValue()[0]
+		
+		// Retrieve the label information list associated with the first measurement
+		labelInfoList := measInfo.GetLabelInfoList()
 		log.Info("2++++++++++++++++++++++++++++++")
-		log.Debugf("QFI IS : %v", qfi)
-		log.Debugf("qci IS : %v", qci)
-		log.Debugf("arpMax IS : %v", arpMax)
-		log.Debugf("qciMin IS : %v", qciMin)
-		log.Debugf("aRpmin IS : %v", aRpmin)
-		log.Debugf("bitrateRange IS : %v", bitrateRange)
-		log.Info("3++++++++++++++++++++++++++++++")
+		// Check if the label information list is not empty
+		if len(labelInfoList.GetValue()) > 0 {
+			// Retrieve the first label information object
+			labelInfo := labelInfoList.GetValue()[0]
+			
+			// Retrieve QFI (QoS Flow Identifier) from the first label information
+			qfi := labelInfo.GetMeasLabel().GetQFi().GetValue()
+			// Retrieve QCI (QoS Class Identifier) from the first label information
+			qci := labelInfo.GetMeasLabel().GetQCi().GetValue()
+			// Retrieve ARPmin (Allocation and Retention Priority minimum) from the first label information
+			aRpmin := labelInfo.GetMeasLabel().GetARpmin().GetValue()
+			// Retrieve QCIMin (QCI minimum) from the first label information
+			qciMin := labelInfo.GetMeasLabel().GetQCimin().GetValue()
+			// Retrieve ARPmax (Allocation and Retention Priority maximum) from the first label information
+			arpMax := labelInfo.GetMeasLabel().GetARpmax().GetValue()
+			// Retrieve BitrateRange from the first label information
+			bitrateRange := labelInfo.GetMeasLabel().GetBitrateRange()
+
+			// Log information
+			log.Info("3++++++++++++++++++++++++++++++")
+			log.Debugf("QFI IS : %v", qfi)
+			log.Debugf("QCI IS : %v", qci)
+			log.Debugf("ARPmax IS : %v", arpMax)
+			log.Debugf("QCIMin IS : %v", qciMin)
+			log.Debugf("ARPmin IS : %v", aRpmin)
+			log.Debugf("BitrateRange IS : %v", bitrateRange)
+			log.Info("3++++++++++++++++++++++++++++++")
+		}
 	}
+
 	
 	log.Debugf("Received indication header format 1 %v:", indHdrFormat1)
 	log.Debugf("Received indication message format 1: %v", indMsgFormat1)
